@@ -1,0 +1,115 @@
+Algorithm for caesar_cipher.py
+
+1. Function: `caesar_cipher`
+    - Input: 
+        - `message`: A string to be processed.
+        - `shift`: An integer indicating the shift amount.
+        - `mode`: A string ('encrypt' or 'decrypt') specifying the operation.
+    - Steps:
+        1. Adjust Shift for Decryption:
+            - If `mode` is 'decrypt', set `shift` to `-shift`.
+        2. Initialize Result:
+            - Create an empty string `result` to store the processed message.
+        3. Process Each Character:
+            - For each `char` in `message`:
+                - If `char` is a letter:
+                    - Uppercase:
+                        - Convert `char` to ASCII using `ord(char)`.
+                        - Normalize to a 0-based index: `ord(char) - 65`.
+                        - Apply shift and wrap around using modulo 26: `(normalized_value + shift) % 26`.
+                        - Convert back to ASCII: `chr(wrapped_value + 65)`.
+                        - Append to `result`.
+                    - Lowercase:
+                        - Convert `char` to ASCII using `ord(char)`.
+                        - Normalize to a 0-based index: `ord(char) - 97`.
+                        - Apply shift and wrap around using modulo 26: `(normalized_value + shift) % 26`.
+                        - Convert back to ASCII: `chr(wrapped_value + 97)`.
+                        - Append to `result`.
+                - If `char` is not a letter:
+                    - Append `char` unchanged to `result`.
+        4. Return Result:
+            - Return the processed string `result`.
+
+2. Function: `main`
+    - Steps:
+        1. Introduction:
+            - Print "Caesar Cipher Program".
+        2. Main Loop:
+            - Repeat until the user chooses to quit:
+                - Prompt for operation choice: 'e' for encrypt, 'd' for decrypt, 'q' to quit.
+                - If 'q' is chosen:
+                    - Print "Goodbye!" and exit the loop.
+                - If 'e' or 'd' is chosen:
+                    - Prompt for the message.
+                    - Prompt for the shift value.
+                    - Validate Shift:
+                        - Try to convert the input to an integer.
+                        - If invalid, print an error message and continue to the next iteration.
+                    - Call `caesar_cipher`:
+                        - If 'e' was chosen, call with 'encrypt' mode.
+                        - If 'd' was chosen, call with 'decrypt' mode.
+                    - Print the result.
+                - If input is invalid:
+                    - Print "Invalid choice. Please enter 'e', 'd', or 'q'."
+
+3. Execution Block
+    - If the script is executed directly, call the `main()` function.
+
+
+Algorithm for caesar_cipher1.py
+
+1. Function: `encrypt`
+    - Input: 
+        - `message`: A string to be encrypted.
+        - `shift`: An integer indicating the shift amount.
+    - Steps:
+        1. Initialize an empty string `encrypted_message`.
+        2. For each `char` in `message`:
+            - If `char` is a letter:
+                - Determine `shift_base`:
+                    - `65` if `char` is uppercase.
+                    - `97` if `char` is lowercase.
+                - Compute the shifted character:
+                    - Convert `char` to ASCII using `ord(char)`.
+                    - Normalize to a 0-based index: `ord(char) - shift_base`.
+                    - Apply shift and wrap around using modulo 26: `(normalized_value + shift) % 26`.
+                    - Convert back to ASCII: `chr(wrapped_value + shift_base)`.
+                - Append the shifted character to `encrypted_message`.
+            - If `char` is not a letter:
+                - Append `char` unchanged to `encrypted_message`.
+        3. Return `encrypted_message`.
+
+2. Function: `decrypt`
+    - Input: 
+        - `message`: A string to be decrypted.
+        - `shift`: An integer indicating the shift amount.
+    - Steps:
+        1. Call `encrypt`** with `message` and `-shift` (negative shift to reverse the encryption).
+        2. Return** the result from `encrypt`.
+
+3. Function: `main`
+    - Steps:
+        1. Print "Caesar Cipher Program".
+        2. Loop until the user chooses to quit:
+            - Prompt for operation choice: 'e' for encrypt, 'd' for decrypt, 'q' to quit.
+            - If 'q' is chosen:
+                - Print "Goodbye!" and exit the loop.
+            - If 'e' or 'd' is chosen:
+                - Prompt for the message.
+                - Prompt for the shift value.
+                - Validate Shift:
+                    - Try to convert the input to an integer.
+                    - If invalid, print an error message and continue to the next iteration.
+                - Call the appropriate function:
+                    - If 'e' was chosen, call `encrypt` with `message` and `shift`.
+                    - If 'd' was chosen, call `decrypt` with `message` and `shift`.
+                - Print the result.
+            - If input is invalid:
+                - Print "Invalid choice. Please enter 'e', 'd', or 'q'."
+
+4. Execution Block
+    - If script is run directly:
+        - Call the `main()` function.
+
+
+
